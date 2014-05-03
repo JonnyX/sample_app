@@ -1,10 +1,6 @@
 require 'rubygems'
-require 'spork'
-#uncomment the following line to use spork with the debugger
-#require 'spork/ext/ruby-debug'
 
-Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
@@ -46,9 +42,3 @@ Spork.prefork do
     config.order = "random"
     config.include Capybara::DSL
   end
-end
-
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
-end
