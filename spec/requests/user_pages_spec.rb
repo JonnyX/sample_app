@@ -34,21 +34,12 @@ describe "User pages" do
         before { click_button submit }
 
         it { should have_title('Sign up') }
-        it { should have_content('Name can\'t be blank') }
-        it { should have_content('Email can\'t be blank') }
-        it { should have_content('Email is invalid') }
-        it { should have_content('Password can\'t be blank') }
-        it { should have_content('Password is too short (minimum is 6 characters)') }
+        should_have_errors
       end
     end
 
     describe "with valid information" do
-      before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
-      end
+      before { valid_signup }
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
